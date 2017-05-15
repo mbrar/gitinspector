@@ -75,7 +75,7 @@ class Commit(object):
 			self.timestamp = commit_line[0]
 			self.date = commit_line[1]
 			self.sha = commit_line[2]
-			self.author = commit_line[3].strip()
+			self.author = commit_line[4].strip().split('@')[0]
 			self.email = commit_line[4].strip()
 
 	def __lt__(self, other):
@@ -92,7 +92,7 @@ class Commit(object):
 		commit_line = string.split("|")
 
 		if commit_line.__len__() == 5:
-			return (commit_line[3].strip(), commit_line[4].strip())
+			return (commit_line[4].split('@')[0], commit_line[4].strip())
 
 	@staticmethod
 	def is_commit_line(string):
